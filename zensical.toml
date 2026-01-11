@@ -17,10 +17,7 @@ Copyright © 2025 The PastWithin
 # 使用 Zensical 的现代主题或传统主题选择
 variant = "modern"  # 默认设置为现代风格
 language = "zh"  # 设置网站语言为中文
-
-[project.theme.icon]
-# 图标配置
-logo = "lucide/github"  # 页面 Logo 图标（GitHub 图标）
+logo = "assets/images/github.png"  # 页面 Logo 图标（GitHub 图标）
 favicon = "assets/images/favicon.ico"  # 网站 favicon（路径相对于项目）
 
 [[project.theme.palette]]
@@ -51,11 +48,9 @@ code = "Roboto Mono"  # 代码字体
 features = [
     "navigation.tabs",        # 启用标签导航
     "navigation.top",         # 顶部导航
-    "navigation.sections",    # 启用多层段导航
-    "navigation.instant",     # 即时导航切换
-    "navigation.expand",      # 全导航展开
-    "navigation.indexes",     # 支持章节索引页
-    "search.highlight"        # 启用搜索高亮
+    "navigation.sections",    # 分节导航
+    "search.highlight",       # 搜索高亮
+    "search.suggest",        # 搜索建议
 ]
 
 extra_css = ["assets/css/extra.css"]  # 自定义 CSS 路径
@@ -71,7 +66,6 @@ extra_css = ["assets/css/extra.css"]  # 自定义 CSS 路径
 
 [[project.nav]]
 "工具" = [
-    { "工具" = "guide/index.md" },
     { "Vscode" = "guide/Vscode.md" },
     { "Markdown" = "guide/Markdown.md" },
     { "Latex" = "guide/Latex.md" }
