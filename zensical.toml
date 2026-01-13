@@ -7,19 +7,29 @@
 site_name = "The PastWithin"  # 网站标题
 site_description = "The PastWithin 的站点"  # 网站描述，用于 SEO
 site_author = "The PastWithin"  # 网站作者信息
-copyright = """
-Copyright © 2025 The PastWithin
-"""  # 网站版权信息
-
+copyright = """Copyright © 2025 The PastWithin"""  # 网站版权信息
+repo_url = "https://github.com/Pastwithin/Pastwithin-Zensical"  # 代码仓库链接
+repo_name = "Pastwithin-Zensical"  # 代码仓库名称显示
 # ----------------------------------------------------------------------------
 # [主题配置] - 核心部分
 [project.theme]
 # 使用 Zensical 的现代主题或传统主题选择
 variant = "modern"  # 默认设置为现代风格
 language = "zh"  # 设置网站语言为中文
+features = [    #功能拓展
+    "navigation.tabs",        # 启用标签导航
+    "navigation.top",         # 顶部导航
+    "navigation.sections",    # 分节导航
+    "search.highlight",       # 搜索高亮
+    "search.suggest",        # 搜索建议
+]
+extra_css = ["assets/css/extra.css"]  # 自定义 CSS 路径
 logo = "assets/images/github.png"  # 页面 Logo 图标（GitHub 图标）
 favicon = "assets/images/favicon.ico"  # 网站 favicon（路径相对于项目）
-
+[project.theme.icon]
+repo = "fontawesome/brands/git-alt"  # 仓库图标设置为 GitHub 图标
+# ----------------------------------------------------------------------------
+# [导航配置]
 [[project.theme.palette]]
 # 浅色模式配置
 scheme = "default"
@@ -44,19 +54,8 @@ text = "Roboto"  # 正文字体
 code = "Roboto Mono"  # 代码字体
 
 # ----------------------------------------------------------------------------
-# [功能扩展]
-features = [
-    "navigation.tabs",        # 启用标签导航
-    "navigation.top",         # 顶部导航
-    "navigation.sections",    # 分节导航
-    "search.highlight",       # 搜索高亮
-    "search.suggest",        # 搜索建议
-]
 
-extra_css = ["assets/css/extra.css"]  # 自定义 CSS 路径
 
-# ----------------------------------------------------------------------------
-# [导航配置]
 [[project.nav]]
 "首页" = [
     { "主页" = "index.md" },
