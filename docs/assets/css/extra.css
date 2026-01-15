@@ -130,3 +130,239 @@ a.guide-card:hover, a.guide-card:focus {
     border-bottom: 3px solid #007bff;
     padding-bottom: 1rem;
 }
+/* Tab Option Card Effect */
+.tab-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0; /* Remove gap for connected look */
+    margin: 2rem 0;
+    min-height: 600px; /* Increased height to prevent indicator overflow at bottom */
+    background: rgba(255, 255, 255, 0.3); /* Base wrapper layer */
+    border-radius: 24px;
+    padding: 12px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+@media (min-width: 768px) {
+    .tab-wrapper {
+        flex-direction: row;
+        padding: 24px 24px 24px 12px; /* Less padding left for tabs */
+    }
+    .tab-list {
+        flex: 0 0 90px; /* Narrow width for icons */
+        margin-right: -12px; /* Pull closer to display */
+        z-index: 10; /* Above display for clicking */
+        padding: 40px 0; /* Add vertical buffer so slider doesn't hit container corners */
+    }
+}
+
+/* Mobile Layout */
+@media (max-width: 767px) {
+    .tab-list {
+        flex-direction: row;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+    .tab-item {
+        width: 50px;
+        height: 50px;
+    }
+    .tab-indicator {
+        display: none; /* Hide complex indicator on mobile */
+    }
+    .tab-item.active {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .tab-item.active .icon {
+        color: var(--md-primary-fg-color, #2b6aa3);
+    }
+}
+
+.tab-list {
+    display: flex;
+    flex-direction: column; /* Default desktop column */
+    position: relative;
+    justify-content: center; /* Center tabs vertically */
+}
+
+.tab-item {
+    width: 60px; /* Fixed size icons */
+    height: 60px;
+    /* Center in list */
+    margin: 6px auto; 
+    border-radius: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    transition: all 0.25s ease;
+    text-decoration: none !important;
+    position: relative;
+    z-index: 5; /* Above indicator text/icon layer */
+}
+
+/* Icon internal styling */
+.tab-item .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: #6c757d;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.tab-item .icon svg {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0)); /* subtle hint */
+}
+
+.tab-item:hover .icon {
+    transform: scale(1.1);
+    color: #4a5568;
+}
+
+.tab-item.active .icon {
+    color: var(--md-primary-fg-color, #2b6aa3);
+    transform: scale(1.15);
+    filter: drop-shadow(0 4px 6px rgba(43, 106, 163, 0.2));
+}
+
+/* Sliding Indicator - The "Connected" Part */
+.tab-indicator {
+    position: absolute;
+    right: 0; /* Anchor to right side of list */
+    width: 100%; 
+    top: 0; 
+    height: 0; 
+    background: #fff; 
+    border-radius: 20px 0 0 20px; 
+    pointer-events: none; 
+    transition: top 0.45s cubic-bezier(0.22, 1, 0.36, 1), height 0.4s ease;
+    z-index: 3; /* Lift above display to cover seam */
+    /* Shadow primarily on left and vertical, minimal right to avoid bleeding onto display */
+    box-shadow: -6px 4px 20px rgba(0,0,0,0.06); 
+    /* Extend slightly into the display */
+    margin-right: -2px; 
+    /* Clip the right edge shadow so it doesn't darken the display */
+    clip-path: inset(-50px 0 -50px -50px);
+}
+
+/* Pseudo-elements for organic connection curves */
+.tab-indicator::before,
+.tab-indicator::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 24px; /* Larger curves */
+    height: 24px;
+    background: transparent;
+    pointer-events: none;
+    z-index: 3;
+}
+.tab-indicator::before {
+    top: -24px;
+    box-shadow: 12px 12px 0 #fff; /* Curve Top */
+    border-bottom-right-radius: 24px;
+}
+.tab-indicator::after {
+    bottom: -24px;
+    box-shadow: 12px -12px 0 #fff; /* Curve Bottom */
+    border-top-right-radius: 24px;
+}
+
+.tab-display {
+    flex: 1;
+    position: relative;
+    background: #fff; 
+    border-radius: 24px;
+    padding: 40px;
+    /* Offset shadow to the right so it doesn't cast on the indicator */
+    box-shadow: 12px 0 30px rgba(0,0,0,0.05);
+    z-index: 2; /* Sit below indicator's right edge */
+    margin-left: -2px; 
+    overflow: hidden; 
+}
+
+.tab-content-panel {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    opacity: 0;
+    visibility: hidden;
+    /* Slide in from Left to Right, reinforcing the sidebar connection */
+    transform: translateX(-30px) scale(0.98);
+    transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    pointer-events: none;
+}
+
+.tab-content-panel.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0) scale(1);
+    pointer-events: auto;
+    transition-delay: 0.05s; /* Slight delay to let indicator arrive */
+}
+
+.tab-content-panel h2 {
+    margin: 0 0 20px 0;
+    font-size: 2rem;
+    color: var(--md-primary-fg-color, #333);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.tab-content-panel p {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    max-width: 600px;
+}
+
+.tab-btn-go {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 32px;
+    background: var(--md-primary-fg-color, #2b6aa3);
+    color: #fff !important;
+    border-radius: 12px;
+    text-decoration: none !important;
+    font-weight: 600;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(43, 106, 163, 0.25);
+}
+
+.tab-btn-go:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(43, 106, 163, 0.35);
+}
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: none; /* Flatten to merge visually */
+}
+
+/* Visual connection: "As a whole" 
+   We make the indicator look like it extends to the right panel.
+   Or simply ensuring the styles match perfectly.
+*/
+.tab-indicator::after {
+    /* Optional: A small "connector" arrow or shape could go here, 
+       but a clean glass look relies on shared texture. */
+}
+ 
+

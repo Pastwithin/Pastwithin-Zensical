@@ -60,11 +60,14 @@ code = "Roboto Mono"  # 代码字体
 "首页" = [
     { "主页" = "index.md" },
     { "网站介绍" = "homepage/网站介绍.md" },
-    { "联系方式" = "homepage/联系方式.md" }
+    { "联系方式" = "homepage/联系方式.md" }, 
+    { "标签云" = "tags-cloud.md" },
+    { "示例" = "example/示例带标签.md" }
 ]
 
 [[project.nav]]
 "工具" = [
+    { "VPN和Copilot" = "guide/VPN&&Copilot.md" },
     { "Vscode" = "guide/Vscode.md" },
     { "Markdown" = "guide/Markdown.md" },
     { "Latex" = "guide/Latex.md" }
