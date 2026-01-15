@@ -8,8 +8,7 @@ tags:
 
 # VPN翻墙教程
 
-​	我说翻墙其实是违法的（
-​	但是其实很没办法的一件事情是，对于有的专业来说你其实免不了翻墙的操作，毕竟国内网络裸连Github的稳定性非常差，再有就是，像是Z-lib这样的资源站，往往也需要你科学上网才能够连得上上（但是还是要提醒，不要到外网上边碰一些不该碰的东西）。
+​我说翻墙其实是违法的(<br>但是其实很没办法的一件事情是，对于有的专业来说你其实免不了翻墙的操作，毕竟国内网络裸连Github的稳定性非常差，再有就是，像是Z-lib这样的资源站，往往也需要你科学上网才能够连得上上（但是还是要提醒，不要到外网上边碰一些不该碰的东西）。
 
 ---
 
@@ -75,7 +74,7 @@ GitHub Copilot 是一个由 GitHub 与大语言模型驱动的**AI编程助手**
 
 一般Github Copilot是搭配着IDE使用的，支持Github Copilot的IDE有：
 <!-- 标签云样式（使用项目中的 tagcloud.css） -->
-<link rel="stylesheet" href="/assets/css/tagcloud.css">
+<link rel="stylesheet" href="../../assets/css/tagcloud.css">
 
 <div class="tag-cloud" aria-label="支持的 IDE">
   <a class="tagcloud-item" target="_blank" rel="noopener"><font color ="3399FF">Visual Studio Code</font></a>

@@ -67,7 +67,7 @@ code = "Roboto Mono"  # 代码字体
 
 [[project.nav]]
 "工具" = [
-    { "VPN和Copilot" = "guide/VPN&&Copilot.md" },
+    { "VPN和Github Copilot" = "guide/VPN&&Copilot.md" },
     { "Vscode" = "guide/Vscode.md" },
     { "Markdown" = "guide/Markdown.md" },
     { "Latex" = "guide/Latex.md" }
