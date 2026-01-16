@@ -8,7 +8,7 @@ tags:
 
 # VPN翻墙教程
 
-​我说翻墙其实是违法的(<br>但是其实很没办法的一件事情是，对于有的专业来说你其实免不了翻墙的操作，毕竟国内网络裸连Github的稳定性非常差，再有就是，像是Z-lib这样的资源站，往往也需要你科学上网才能够连得上上（但是还是要提醒，不要到外网上边碰一些不该碰的东西）。
+我说翻墙其实是违法的(<br>但是其实很没办法的一件事情是，对于有的专业来说你其实免不了翻墙的操作，毕竟国内网络裸连Github的稳定性非常差，再有就是，像是Z-lib这样的资源站，往往也需要你科学上网才能够连得上上（但是还是要提醒，不要到外网上边碰一些不该碰的东西）。
 
 ---
 
@@ -127,7 +127,7 @@ GitHub Copilot 是一个由 GitHub 与大语言模型驱动的**AI编程助手**
   
 - 在上传之后不久就可以查看结果，如果审核不通过可以多尝试几次。在通过之后你的Github Copilot将会在三天之后可用，注意，这并不是自动启用的，而是需要你自己在Github上边进行确认的。
 
-- 在确认之后你就可以在<a href="https://github.com/copilot" style="text-decoration:none; color:#0366d6;">https://github.com/copilot</a>和你的IDE中使用Github Copilot了。
+- 在确认之后你就可以在<a href="https://github.com/copilot" style="text-decoration:none; color:#0366d6;">Github Copilot</a>和你的IDE中使用Github Copilot了。
 
   > 对于在IDE中的配置，在IDE中下载Github Copilot，然后登录你的Github账号即可
 

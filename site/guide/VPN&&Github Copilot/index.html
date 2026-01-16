@@ -87,6 +87,10 @@
       
     
     
+      <link rel="stylesheet" href="../../assets/css/extra.css">
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
     
       
@@ -271,7 +275,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../resourses/Vscode/" class="md-tabs__link">
+        <a href="../../resources/Vscode/" class="md-tabs__link">
           
   
   软件资源
@@ -659,6 +663,8 @@
           
   
   
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-braces" viewBox="0 0 24 24"><path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"/></svg>
+  
   <span class="md-ellipsis">
     
   
@@ -676,6 +682,8 @@
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
+  
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-braces" viewBox="0 0 24 24"><path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"/></svg>
   
   <span class="md-ellipsis">
     
@@ -937,7 +945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../resourses/Vscode/" class="md-nav__link">
+      <a href="../../resources/Vscode/" class="md-nav__link">
         
   
   
@@ -965,7 +973,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../resourses/Typora/" class="md-nav__link">
+      <a href="../../resources/Typora/" class="md-nav__link">
         
   
   
@@ -993,7 +1001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../resourses/PS/" class="md-nav__link">
+      <a href="../../resources/PS/" class="md-nav__link">
         
   
   
@@ -1455,10 +1463,10 @@
   
 
 
-<h1 id="vpn">VPN翻墙教程<a class="headerlink" href="#vpn" title="Permanent link">&para;</a></h1>
-<p>​我说翻墙其实是违法的(<br>但是其实很没办法的一件事情是，对于有的专业来说你其实免不了翻墙的操作，毕竟国内网络裸连Github的稳定性非常差，再有就是，像是Z-lib这样的资源站，往往也需要你科学上网才能够连得上上（但是还是要提醒，不要到外网上边碰一些不该碰的东西）。</p>
+<h1 id="vpn">VPN翻墙教程</h1>
+<p>我说翻墙其实是违法的(<br>但是其实很没办法的一件事情是，对于有的专业来说你其实免不了翻墙的操作，毕竟国内网络裸连Github的稳定性非常差，再有就是，像是Z-lib这样的资源站，往往也需要你科学上网才能够连得上上（但是还是要提醒，不要到外网上边碰一些不该碰的东西）。</p>
 <hr />
-<h2 id="_1">相关概念<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="_1">相关概念</h2>
 <ul>
 <li>VPN：</li>
 </ul>
@@ -1472,8 +1480,8 @@
 </ul>
 <p>​ 这是一个代理客户端程序，主要是能够实现解析你的订阅配置，并且能够根据规则来决定什么时候应该走直连还是走代理（比方说国内的网站就走直连，国外的网站就走代理）。</p>
 <hr />
-<h2 id="_2">具体操作<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<h3 id="1clash">1.Clash 软件下载<a class="headerlink" href="#1clash" title="Permanent link">&para;</a></h3>
+<h2 id="_2">具体操作</h2>
+<h3 id="1clash">1.Clash 软件下载</h3>
 <p>​   这里以我自己使用的软件（Clash Verge）为例：
 ​   首先先在下边贴一下下载地址</p>
 <p>​   <a href="https://clash-verge.org/zh-CN" style="text-decoration:none; color:#0366d6;">Clash Verge</a></p>
@@ -1481,14 +1489,14 @@
 <p>下载的时候浏览器可能会识别Clash Verge为有风险的文件，右键选择保留即可（无视风险继续安装）</p>
 </blockquote>
 <p>​   当你下载完成之后，打开Clash Verge，点开侧边栏中的<code>订阅</code>，这个时候里边还是空的，你还需要到其它地方获取一个可用的订阅。</p>
-<h3 id="2">2.获取订阅<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<h3 id="2">2.获取订阅</h3>
 <p>​   我自己使用的订阅是叫做<a href="https://interface.pqjc.site/#/dashboard" style="text-decoration:none; color:#0366d6;">赔钱机场</a>，节点不算特别快，但是日常使用算是比较够了。
 ​   当然你也可以选择其它的订阅节点，但在购买订阅的时候一般不要买特别久，主要是怕跑路。
 ​   在你购买订阅之后，订阅方会给你一个订阅链接，直接复制到Clash Verge订阅栏中的订阅文件链接处导入即可。</p>
-<h3 id="3">3.开启代理<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<h3 id="3">3.开启代理</h3>
 <p>​   启用节点，并在Clash Verge 中开启系统代理即可。</p>
 <hr />
-<h2 id="_3">需要注意的点<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_3">需要注意的点</h2>
 <ul>
 <li>有的时候学校可能会<font color ="red">BAN</font>掉代理端口，比如去年考研的时候连在学校校网上，节点基本上都显示<font color="red" ><code>Time out</code></font>,这种时候可以先考虑一下更换网络，也可以连在手机热点上试一下。</li>
 <li><strong>在关机之前记得关掉你的代理软件</strong>，不关掉的话有的时候可能会有一些奇怪的问题。下面我给出一些我自己见到过的问题和当时的解决方案：</li>
@@ -1502,7 +1510,7 @@
 </li>
 </ul>
 <hr />
-<h1 id="github-copilot">Github Copilot 学生认证教程<a class="headerlink" href="#github-copilot" title="Permanent link">&para;</a></h1>
+<h1 id="github-copilot">Github Copilot 学生认证教程</h1>
 <p>GitHub Copilot 是一个由 GitHub 与大语言模型驱动的<strong>AI编程助手</strong>。</p>
 <blockquote>
 <p>注意：Github Copilot和微软Windows的Colilot不是一个东西</p>
@@ -1523,7 +1531,7 @@
 <p>你应该可以在这些IDE的插件中找到Github Copilot。</p>
 <p>对于学生，Github Copilot提供了一年的免费使用。这个学生认证貌似是AI认证的，我在这里只是介绍我当时认证通过的方法，如果有人认证的时候遇到了始终无法通过的情况的话，可以再参考网上其它的一些方法。</p>
 <hr />
-<h2 id="_4">提前准备<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_4">提前准备</h2>
 <ul>
 <li>
 <p>首先你需要有自己的一个Github账号。</p>
@@ -1536,8 +1544,8 @@
 </li>
 </ul>
 <hr />
-<h2 id="_5">具体操作<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<h3 id="_6">补充个人信息<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<h2 id="_5">具体操作</h2>
+<h3 id="_6">补充个人信息</h3>
 <ul>
 <li>
 <p>登录你的Github</p>
@@ -1577,14 +1585,14 @@
 <p>在上传之后不久就可以查看结果，如果审核不通过可以多尝试几次。在通过之后你的Github Copilot将会在三天之后可用，注意，这并不是自动启用的，而是需要你自己在Github上边进行确认的。</p>
 </li>
 <li>
-<p>在确认之后你就可以在<a href="https://github.com/copilot" style="text-decoration:none; color:#0366d6;"><a href="https://github.com/copilot">https://github.com/copilot</a></a>和你的IDE中使用Github Copilot了。</p>
+<p>在确认之后你就可以在<a href="https://github.com/copilot" style="text-decoration:none; color:#0366d6;">Github Copilot</a>和你的IDE中使用Github Copilot了。</p>
 </li>
 </ul>
 <blockquote>
 <p>对于在IDE中的配置，在IDE中下载Github Copilot，然后登录你的Github账号即可</p>
 </blockquote>
 <hr />
-<h2 id="_7">补充<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h2 id="_7">补充</h2>
 <ul>
 <li>假如在不使用VPN的情况下无法连接到Github导致最后一步无法完成，可以尝试使用<a href="https://www.dogfight360.com/blog/18627/" style="text-decoration:none; color:#0366d6;">UsbEAm Hosts Editor</a>修改Github的host配置。</li>
 </ul>
@@ -1671,10 +1679,16 @@
       
       
       
-      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["navigation.tabs","navigation.top","navigation.sections","search.highlight","search.suggest"],"search":"../../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"已复制","clipboard.copy":"复制","search.result.more.one":"在该页上还有 1 个符合条件的结果","search.result.more.other":"在该页上还有 # 个符合条件的结果","search.result.none":"没有找到符合条件的结果","search.result.one":"找到 1 个符合条件的结果","search.result.other":"# 个符合条件的结果","search.result.placeholder":"键入以开始搜索","search.result.term.missing":"缺少","select.version":"选择当前版本"},"version":null}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["navigation.tabs","navigation.top","navigation.sections","search.highlight","search.suggest","content.code.copy","content.tabs"],"search":"../../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"已复制","clipboard.copy":"复制","search.result.more.one":"在该页上还有 1 个符合条件的结果","search.result.more.other":"在该页上还有 # 个符合条件的结果","search.result.none":"没有找到符合条件的结果","search.result.one":"找到 1 个符合条件的结果","search.result.other":"# 个符合条件的结果","search.result.placeholder":"键入以开始搜索","search.result.term.missing":"缺少","select.version":"选择当前版本"},"version":null}</script>
     
     
       <script src="../../assets/javascripts/bundle.00c35305.min.js"></script>
+      
+        <script src="../../javascripts/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
       
     
   </body>
