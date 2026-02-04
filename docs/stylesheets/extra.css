@@ -1,0 +1,197 @@
+/* Light / Frosted theme for Zensical
+   - Light background, neutral/blue accent
+   - Subtle frosted panels for cards and sidebars
+   - Clean light code windows for <pre> blocks
+*/
+
+/* Colors (light theme) */
+:root{
+  --bg-900: #ffffff;
+  --bg-800: #f7f8fa;
+  --text: #222222;           /* main body text (dark) */
+  --muted: #6b6f76;         /* secondary text */
+  --accent: #2b8cff;        /* blue accent */
+  --accent-600: rgba(43,140,255,0.12);
+  --glass: rgba(0,0,0,0.04);
+  --glass-strong: rgba(0,0,0,0.06);
+  --panel-border: rgba(16,24,32,0.06);
+  --code-bg: linear-gradient(180deg, #f6f8fa 0%, #ffffff 100%);
+}
+
+/* Base */
+html,body {
+  height: 100%;
+  background: radial-gradient(circle at 10% 10%, rgba(43,140,255,0.02), transparent 8%),
+              radial-gradient(circle at 90% 90%, rgba(43,140,255,0.01), transparent 8%),
+              var(--bg-900);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, "Noto Sans", "Segoe UI", Roboto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+/* Links / accents */
+a, .md-nav__link, .md-nav__title {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color .15s ease, text-shadow .15s ease;
+}
+a:hover { text-shadow: 0 0 8px var(--accent-600); color: color-mix(in srgb, var(--accent) 80%, #000000 20%); }
+
+/* Frosted glass utility (light variant) */
+.frosted {
+  background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.76));
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(16,24,32,0.06), inset 0 1px 0 rgba(255,255,255,0.6);
+  backdrop-filter: blur(8px) saturate(110%);
+  -webkit-backdrop-filter: blur(8px) saturate(110%);
+}
+
+/* Apply glass to common layout pieces (selectors may vary by theme version) */
+header, .md-header, .md-header--sticky, .md-sidebar, .md-nav, .md-footer {
+  background: transparent;
+}
+
+.md-main, main, .md-content {
+  padding: 24px;
+}
+
+/* Wrap main content in glass when possible (the override template will add .glass-layout) */
+.glass-layout {
+  padding: 28px;
+  display: grid;
+  gap: 20px;
+}
+
+/* Card-like elements (light) */
+.card, .admonition, .md-content .section, .md-typeset > section {
+  padding: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,250,250,0.92));
+  border-radius: 10px;
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 6px 18px rgba(16,24,32,0.04);
+  backdrop-filter: blur(6px) saturate(105%);
+}
+
+/* Headings */
+h1,h2,h3,h4,h5 {
+  color: var(--text);
+}
+
+/* Sidebar (slightly translucent) */
+.md-sidebar {
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,250,250,0.96));
+  border-right: 1px solid var(--panel-border);
+  padding: 16px;
+  backdrop-filter: blur(6px) saturate(105%);
+}
+
+/* Buttons / accent UI */
+button, .md-nav__link--active, .md-footer a {
+  background: transparent;
+  border-radius: 8px;
+  color: var(--accent);
+}
+
+/* Selection */
+::selection { background: var(--accent-600); color: #ffffff; }
+
+/* Scrollbar (WebKit) */
+::-webkit-scrollbar { height:10px; width:10px; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(43,140,255,0.28), rgba(43,140,255,0.18));
+  border-radius: 999px;
+  border: 2px solid rgba(255,255,255,0.85);
+}
+
+/* ---------------------- */
+/* Code block (light mac window) */
+/* ---------------------- */
+
+.code-window {
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 18px 0;
+  box-shadow: 0 8px 28px rgba(16,24,32,0.06);
+  background: var(--code-bg);
+  border: 1px solid rgba(16,24,32,0.04);
+  font-size: 13px;
+  position: relative;
+}
+
+/* top bar (mac window controls) */
+.code-window__top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(245,245,245,0.9));
+  border-bottom: 1px solid rgba(16,24,32,0.03);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+
+.window-controls {
+  display: flex;
+  gap: 8px;
+  align-items:center;
+  margin-right: 6px;
+}
+.window-controls .dot { width:12px; height:12px; border-radius:50%; box-shadow: 0 1px 0 rgba(255,255,255,0.6); }
+.window-controls .dot.red   { background: #ff5f57; }
+.window-controls .dot.yellow{ background: #ffbd2e; }
+.window-controls .dot.green { background: #28c840; }
+
+/* optional title/label on top bar */
+.code-window__title { color: var(--muted); font-size: 12px; margin-left: 6px; }
+
+/* code area */
+.code-window pre {
+  margin: 0;
+  padding: 18px;
+  background: transparent;
+  overflow: auto;
+  color: #102026; /* dark code text */
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* basic token colors (light-friendly) */
+.code-window code, .code-window pre code { color: #0b3b5c; }
+.code-window .token.comment, .code-window .token.prolog, .code-window .token.doctype, .code-window .token.cdata { color: #7a858d; font-style: italic; }
+.code-window .token.property, .code-window .token.tag, .code-window .token.boolean, .code-window .token.number, .code-window .token.constant, .code-window .token.symbol, .code-window .token.deleted { color: #b04b4b; }
+.code-window .token.selector, .code-window .token.attr-name, .code-window .token.string, .code-window .token.char, .code-window .token.builtin, .code-window .token.inserted { color: #1b9a59; }
+.code-window .token.function { color: #5b7bd5; }
+.code-window .token.keyword { color: #2b8cff; }
+
+/* copy button */
+.code-window .copy-btn {
+  margin-left: auto;
+  background: rgba(16,24,32,0.02);
+  border: 1px solid rgba(16,24,32,0.03);
+  color: var(--muted);
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.code-window .copy-btn:hover {
+  color: var(--text);
+  background: var(--accent-600);
+  box-shadow: 0 6px 18px rgba(43,140,255,0.06);
+}
+
+/* Small screens adjustments */
+@media (max-width: 720px) {
+  .glass-layout { padding: 12px; }
+  .code-window pre { padding: 12px; font-size: 12px; }
+}
+
+/* Accessibility: increase contrast toggle (optional) */
+.theme-high-contrast {
+  --glass: rgba(0,0,0,0.06);
+  --panel-border: rgba(16,24,32,0.12);
+}
