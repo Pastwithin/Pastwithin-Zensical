@@ -1,197 +1,235 @@
-/* Light / Frosted theme for Zensical
-   - Light background, neutral/blue accent
-   - Subtle frosted panels for cards and sidebars
-   - Clean light code windows for <pre> blocks
-*/
+/* 
+ * Drake Zensical Theme (Dual Mode) - Updated
+ * Goal: 保留暗色模式下代码块的透明毛玻璃效果（frosted glass）
+ *
+ * 注意：把此文件替换到你的项目 `docs/assets/css/drake-zensical.css`
+ * 然后重启 `mkdocs serve` 或重新构建站点以查看效果。
+ */
 
-/* Colors (light theme) */
-:root{
-  --bg-900: #ffffff;
-  --bg-800: #f7f8fa;
-  --text: #222222;           /* main body text (dark) */
-  --muted: #6b6f76;         /* secondary text */
-  --accent: #2b8cff;        /* blue accent */
-  --accent-600: rgba(43,140,255,0.12);
-  --glass: rgba(0,0,0,0.04);
-  --glass-strong: rgba(0,0,0,0.06);
-  --panel-border: rgba(16,24,32,0.06);
-  --code-bg: linear-gradient(180deg, #f6f8fa 0%, #ffffff 100%);
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/* ==========================================================================
+   通用变量与字体
+   ========================================================================== */
+:root {
+  --md-code-font: "JetBrains Mono", monospace;
+  --md-text-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
-/* Base */
-html,body {
-  height: 100%;
-  background: radial-gradient(circle at 10% 10%, rgba(43,140,255,0.02), transparent 8%),
-              radial-gradient(circle at 90% 90%, rgba(43,140,255,0.01), transparent 8%),
-              var(--bg-900);
-  color: var(--text);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, "Noto Sans", "Segoe UI", Roboto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.5;
+/* ==========================================================================
+   【亮色模式】 Light Mode (scheme: default)
+   ========================================================================== */
+[data-md-color-scheme="default"] {
+  --drake-bg: #ffffff;
+  --drake-text: #304455;
+  --drake-accent: #d63200;
+  --drake-accent-rgb: 214, 50, 0;
+  --drake-code-bg: #f6f8fa;
+  --drake-border: #e1e4e8;
+
+  --md-default-bg-color: var(--drake-bg);
+  --md-default-fg-color: var(--drake-text);
+  --md-accent-fg-color: var(--drake-accent);
+  --md-code-bg-color: var(--drake-code-bg);
 }
 
-/* Links / accents */
-a, .md-nav__link, .md-nav__title {
-  color: var(--accent);
-  text-decoration: none;
-  transition: color .15s ease, text-shadow .15s ease;
-}
-a:hover { text-shadow: 0 0 8px var(--accent-600); color: color-mix(in srgb, var(--accent) 80%, #000000 20%); }
-
-/* Frosted glass utility (light variant) */
-.frosted {
-  background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.76));
-  border: 1px solid var(--panel-border);
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(16,24,32,0.06), inset 0 1px 0 rgba(255,255,255,0.6);
-  backdrop-filter: blur(8px) saturate(110%);
-  -webkit-backdrop-filter: blur(8px) saturate(110%);
+[data-md-color-scheme="default"] body {
+  background-color: var(--drake-bg);
+  background-image: none;
 }
 
-/* Apply glass to common layout pieces (selectors may vary by theme version) */
-header, .md-header, .md-header--sticky, .md-sidebar, .md-nav, .md-footer {
-  background: transparent;
+/* 引用块：带有主题色的极淡半透明背景 + 左侧实线 */
+[data-md-color-scheme="default"] .md-typeset blockquote {
+  color: var(--drake-text);
+  background-color: rgba(var(--drake-accent-rgb), 0.05);
+  border-left: 4px solid var(--drake-accent);
+  padding: 10px 16px;
+  border-radius: 4px;
+  box-shadow: none;
+  margin: 1.5em 0;
 }
+[data-md-color-scheme="default"] .md-typeset blockquote::after { display: none; }
 
-.md-main, main, .md-content {
-  padding: 24px;
-}
-
-/* Wrap main content in glass when possible (the override template will add .glass-layout) */
-.glass-layout {
-  padding: 28px;
-  display: grid;
-  gap: 20px;
-}
-
-/* Card-like elements (light) */
-.card, .admonition, .md-content .section, .md-typeset > section {
-  padding: 18px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,250,250,0.92));
-  border-radius: 10px;
-  border: 1px solid var(--panel-border);
-  box-shadow: 0 6px 18px rgba(16,24,32,0.04);
-  backdrop-filter: blur(6px) saturate(105%);
-}
-
-/* Headings */
-h1,h2,h3,h4,h5 {
-  color: var(--text);
-}
-
-/* Sidebar (slightly translucent) */
-.md-sidebar {
-  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,250,250,0.96));
-  border-right: 1px solid var(--panel-border);
-  padding: 16px;
-  backdrop-filter: blur(6px) saturate(105%);
-}
-
-/* Buttons / accent UI */
-button, .md-nav__link--active, .md-footer a {
-  background: transparent;
+/* 代码块（亮色）：保留 Mac 圆点，但不使用 frosted glass */
+[data-md-color-scheme="default"] .md-typeset .highlight {
+  background-color: var(--drake-code-bg) !important;
+  border: 1px solid var(--drake-border);
+  box-shadow: none;
   border-radius: 8px;
-  color: var(--accent);
-}
-
-/* Selection */
-::selection { background: var(--accent-600); color: #ffffff; }
-
-/* Scrollbar (WebKit) */
-::-webkit-scrollbar { height:10px; width:10px; }
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, rgba(43,140,255,0.28), rgba(43,140,255,0.18));
-  border-radius: 999px;
-  border: 2px solid rgba(255,255,255,0.85);
-}
-
-/* ---------------------- */
-/* Code block (light mac window) */
-/* ---------------------- */
-
-.code-window {
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 18px 0;
-  box-shadow: 0 8px 28px rgba(16,24,32,0.06);
-  background: var(--code-bg);
-  border: 1px solid rgba(16,24,32,0.04);
-  font-size: 13px;
+  margin: 1em 0;
+  /* 给圆点留出顶部空间 */
+  padding-top: 32px !important;
   position: relative;
 }
-
-/* top bar (mac window controls) */
-.code-window__top {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 12px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(245,245,245,0.9));
-  border-bottom: 1px solid rgba(16,24,32,0.03);
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
+[data-md-color-scheme="default"] .md-typeset .highlight::before {
+  content: '';
+  display: block;
+  background: #fc625d;
+  box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+  border-radius: 50%;
+  left: 16px;
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 12px;
+  z-index: 10;
 }
+[data-md-color-scheme="default"] .md-typeset pre { background: transparent !important; }
 
-.window-controls {
-  display: flex;
-  gap: 8px;
-  align-items:center;
-  margin-right: 6px;
-}
-.window-controls .dot { width:12px; height:12px; border-radius:50%; box-shadow: 0 1px 0 rgba(255,255,255,0.6); }
-.window-controls .dot.red   { background: #ff5f57; }
-.window-controls .dot.yellow{ background: #ffbd2e; }
-.window-controls .dot.green { background: #28c840; }
-
-/* optional title/label on top bar */
-.code-window__title { color: var(--muted); font-size: 12px; margin-left: 6px; }
-
-/* code area */
-.code-window pre {
-  margin: 0;
-  padding: 18px;
+/* 表格（亮色） */
+[data-md-color-scheme="default"] .md-typeset table:not([class]) {
+  border: 1px solid var(--drake-border);
   background: transparent;
-  overflow: auto;
-  color: #102026; /* dark code text */
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
-  font-size: 13px;
-  line-height: 1.55;
+  display: inline-table;
+}
+[data-md-color-scheme="default"] .md-typeset table:not([class]) th {
+  background-color: #f6f8fa;
+  color: #24292e;
+  border: 1px solid var(--drake-border);
+  font-weight: bold;
+}
+[data-md-color-scheme="default"] .md-typeset table:not([class]) td {
+  border: 1px solid var(--drake-border);
 }
 
-/* basic token colors (light-friendly) */
-.code-window code, .code-window pre code { color: #0b3b5c; }
-.code-window .token.comment, .code-window .token.prolog, .code-window .token.doctype, .code-window .token.cdata { color: #7a858d; font-style: italic; }
-.code-window .token.property, .code-window .token.tag, .code-window .token.boolean, .code-window .token.number, .code-window .token.constant, .code-window .token.symbol, .code-window .token.deleted { color: #b04b4b; }
-.code-window .token.selector, .code-window .token.attr-name, .code-window .token.string, .code-window .token.char, .code-window .token.builtin, .code-window .token.inserted { color: #1b9a59; }
-.code-window .token.function { color: #5b7bd5; }
-.code-window .token.keyword { color: #2b8cff; }
+/* ==========================================================================
+   【暗色模式】 Dark Mode (scheme: slate) - Drake Style (保留 frosted glass)
+   ========================================================================== */
+[data-md-color-scheme="slate"] {
+  --drake-bg: rgb(26, 26, 26);
+  --drake-text: rgba(255, 255, 255, 0.75);
+  --drake-accent: #42B883;
+  --drake-accent-rgb: 66, 184, 131;
+  --drake-code-bg: rgba(36, 36, 36, 0.45); /* 透明度略调为 0.45，便于毛玻璃效果 */
+  
+  --md-default-bg-color: var(--drake-bg);
+  --md-default-fg-color: var(--drake-text);
+  --md-accent-fg-color: var(--drake-accent);
+  --md-code-bg-color: var(--drake-code-bg);
+  --md-code-fg-color: #A6ACCD;
 
-/* copy button */
-.code-window .copy-btn {
-  margin-left: auto;
-  background: rgba(16,24,32,0.02);
-  border: 1px solid rgba(16,24,32,0.03);
-  color: var(--muted);
-  padding: 6px 10px;
+  /* 让卡片透明以显示背景光晕 */
+  --md-bg-color-secondary: transparent;
+}
+
+/* 背景光晕（暗色） */
+[data-md-color-scheme="slate"] body {
+  background: 
+      linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.06) 30%, var(--drake-bg) 100%),
+      radial-gradient(circle at 50% calc(90% + 200px), rgba(var(--drake-accent-rgb), 0.18) 0%, rgba(var(--drake-accent-rgb), 0.08) 20%, rgba(0,0,0,0.06) 50%, transparent 75%),
+      radial-gradient(circle at 60% calc(70% + 200px), rgba(var(--drake-accent-rgb), 0.12) 0%, rgba(var(--drake-accent-rgb), 0.04) 25%, transparent 60%);
+  background-attachment: fixed;
+  background-color: var(--drake-bg);
+}
+
+/* 透明化容器以显示背景 */
+[data-md-color-scheme="slate"] .md-main__inner,
+[data-md-color-scheme="slate"] .md-content,
+[data-md-color-scheme="slate"] .md-sidebar {
+  background: transparent !important;
+}
+
+/* 顶部导航栏玻璃效果 */
+[data-md-color-scheme="slate"] .md-header {
+  background-color: rgba(26,26,26,0.22) !important;
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* 引用块（暗色风格） */
+[data-md-color-scheme="slate"] .md-typeset blockquote {
+  color: #EBEBEB99;
+  background-color: rgba(var(--drake-accent-rgb), 0.04);
+  padding: 16px 20px 16px 24px;
   border-radius: 8px;
-  cursor: pointer;
-  font-size: 12px;
+  border-left: none;
+  position: relative;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.06);
 }
-.code-window .copy-btn:hover {
-  color: var(--text);
-  background: var(--accent-600);
-  box-shadow: 0 6px 18px rgba(43,140,255,0.06);
+[data-md-color-scheme="slate"] .md-typeset blockquote::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: var(--drake-accent);
+  border-radius: 4px 0 0 4px;
 }
 
-/* Small screens adjustments */
-@media (max-width: 720px) {
-  .glass-layout { padding: 12px; }
-  .code-window pre { padding: 12px; font-size: 12px; }
+/* 关键：暗色下的代码块保持透明毛玻璃效果 */
+[data-md-color-scheme="slate"] .md-typeset .highlight {
+  /* 半透明基底以显示背后 glow（保留 frosted glass） */
+  background-color: rgba(36,36,36,0.45) !important;
+  /* 毛玻璃效果 */
+  -webkit-backdrop-filter: blur(12px) saturate(140%) contrast(0.98);
+  backdrop-filter: blur(12px) saturate(140%) contrast(0.98);
+  border-radius: 10px;
+  margin: 1.5rem 0;
+  padding-top: 36px !important; /* 留出顶部空间给三个小圆点 */
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: var(--md-code-fg-color);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.6);
+  overflow: hidden;
 }
 
-/* Accessibility: increase contrast toggle (optional) */
-.theme-high-contrast {
-  --glass: rgba(0,0,0,0.06);
-  --panel-border: rgba(16,24,32,0.12);
+/* Mac 风格的红黄绿圆点（暗色） */
+[data-md-color-scheme="slate"] .md-typeset .highlight::before {
+  content: '';
+  background: #fc625d;
+  box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+  border-radius: 50%;
+  left: 16px;
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 12px;
+  z-index: 10;
 }
+
+/* 保证 pre 的背景透明，使 frosted 背景完整 */
+[data-md-color-scheme="slate"] .md-typeset pre {
+  background: transparent !important;
+  margin: 0;
+  padding: 0 1rem 1rem 1rem !important; /* 保持代码内部间距 */
+}
+
+/* 表格（暗色玻璃风） */
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) {
+  background: transparent;
+  border: 2px solid rgba(255,255,255,0.18);
+  display: inline-table;
+}
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
+  background-color: #242424;
+  color: var(--drake-accent);
+  border: 2px solid rgba(255,255,255,0.14);
+}
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) td {
+  border: 2px solid rgba(255,255,255,0.14);
+}
+
+/* Mermaid（仅暗色时强定制，保留对比与可读性） */
+[data-md-color-scheme="slate"] .mermaid text,
+[data-md-color-scheme="slate"] .mermaid tspan {
+  fill: var(--drake-text) !important;
+  font-family: "JetBrains Mono", sans-serif !important;
+}
+[data-md-color-scheme="slate"] .mermaid rect,
+[data-md-color-scheme="slate"] .mermaid polygon,
+[data-md-color-scheme="slate"] .mermaid circle.actor {
+  fill: rgba(36,36,36,0.56) !important;
+  stroke: rgba(255,255,255,0.22) !important;
+  stroke-width: 2px !important;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+}
+
+/* ========================================================================== */
+
+/* 兼容性小提示：
+   - 某些较老的浏览器/平台（如部分移动浏览器）对 backdrop-filter 支持不佳；
+     若需完全兼容，请在样式中保留一个不使用 backdrop-filter 的回退（本文件已提供回退背景色）。
+   - 若使用 MkDocs 的缓存/压缩插件，请清缓存后重新加载。
+*/

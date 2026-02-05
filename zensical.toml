@@ -13,12 +13,12 @@ repo_name = "Pastwithin-Zensical"  # 代码仓库名称显示
 extra_css = [
     "assets/css/extra.css",
     "https://unpkg.com/katex@0/dist/katex.min.css",
-    #"stylesheets/extra.css"
+    "stylesheets/extra.css"
 ]  # 自定义 CSS 路径
 extra_javascript = [
     "javascripts/katex.js",
     "https://unpkg.com/katex@0/dist/katex.min.js",
-    "https://unpkg.com/katex@0/dist/contrib/auto-render.min.js",
+    "https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"
     #"assets/javascripts/extra.js"
 ]  # 自定义 JavaScript 路径
 # ----------------------------------------------------------------------------
@@ -103,9 +103,7 @@ custom_fences = [
 ]
 [[project.nav]]
 "学习笔记" = [
-    { "常微分方程" = "notes/常微分方程.md" },
-    { "常微分方程1" = "notes/常微分方程.html" },
-    { "常微分方程2" = "notes/常微分方程_from_html" }
+    { "常微分方程" = "notes/常微分方程/常微分方程.md" }
 ]
 
 [[project.nav]]
