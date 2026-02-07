@@ -1,15 +1,19 @@
 ---
-title: 常微分方程
+title: VPN&&Github Copilot
+tags:
+  - VPN
+  - Github Copilot
+status: new
 ---
 
-<iframe data-dark-src="../常微分方程.html" data-light-src="../常微分方程light.html" src="about:blank" style="display:block;width:calc(100% + 500px);min-width:1300px;margin-left:-100px;height:80vh;border:0;max-width:none;"></iframe>
+<iframe src="../VPN&&Github Copilot_light.html" style="display:block;width:calc(100% + 500px);min-width:1300px;margin-left:-100px;height:80vh;border:0;max-width:none;"></iframe>
 
 <script>
 (function(){
 	const iframe = document.querySelector('iframe');
 	if(!iframe) return;
-	const darkSrc = iframe.getAttribute('data-dark-src') || '../常微分方程.html';
-	const lightSrc = iframe.getAttribute('data-light-src') || '../常微分方程light.html';
+	const darkSrc = '../VPN&&Github Copilot.html';
+	const lightSrc = '../VPN&&Github Copilot_light.html';
 
 	function getTheme(){
 		// prefer body attribute (Material theme sets data-md-color-scheme on <body>)

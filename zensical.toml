@@ -29,6 +29,7 @@ variant = "modern"  # 默认设置为现代风格
 language = "zh"  # 设置网站语言为中文
 features = [    #功能拓展
     "navigation.tabs",        # 启用标签导航
+    "navigation.tabs.sticky", # 导航栏吸顶
     "navigation.top",         # 顶部导航
     "navigation.sections",    # 分节导航
     "search.highlight",       # 搜索高亮
@@ -43,8 +44,11 @@ logo = "assets/images/github.png"  # 页面 Logo 图标（GitHub 图标）
 favicon = "assets/images/favicon.ico"  # 网站 favicon（路径相对于项目）
 [project.theme.icon]
 repo = "fontawesome/brands/git-alt"  # 仓库图标设置为 GitHub 图标
-font.text = "Roboto"  # 正文字体
-font.code = "JetBrains Mono"  # 代码字体
+
+[project.theme.font]
+text = "Roboto"  # 正文字体
+code = "JetBrains-Mono"  # 代码字体
+
 custom_dir = "overrides"  # 自定义主题目录
 # ----------------------------------------------------------------------------
 # [导航配置]
@@ -95,10 +99,10 @@ custom_fences = [
 
 [[project.nav]]
 "工具" = [
-    { "VPN和Github Copilot" = "guide/VPN&&Github Copilot.md" },
+    { "VPN和Github Copilot" = "guide/VPN&&Github Copilot/VPN&&Github Copilot.md" },
     { "Markdown" = [
-        {"Markdown基础语法" = "guide/Markdown基础语法.md"},
-        {"Markdown表格语法" = "guide/Markdown表格语法.md"},
+        {"Markdown基础语法" = "guide/Markdown基础语法/Markdown基础语法.md"},
+        {"Markdown表格语法" = "guide/Markdown表格语法/Markdown表格语法.md"},
     ] },
 ]
 [[project.nav]]

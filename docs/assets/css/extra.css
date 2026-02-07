@@ -1,0 +1,176 @@
+
+/* Homepage Landing Screen */
+
+/* 
+   Hide user interface elements when the landing screen is present.
+   This requires a browser supporting the :has() selector (modern browsers).
+*/
+/* 
+body:has(.landing-screen) .md-header,
+body:has(.landing-screen) .md-tabs {
+    display: none;
+} 
+*/
+
+/* Ensure header is visible above the landing screen */
+.md-header, .md-tabs {
+    z-index: 20 !important;
+}
+
+/* Remove default top padding so the image starts at the very top */
+body:has(.landing-screen) .md-main__inner {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/* Ensure the layout container doesn't constrain us */
+body:has(.landing-screen) .md-content {
+    padding: 0;
+    margin: 0;
+    max-width: none !important; /* Allow full width */
+}
+
+.landing-screen {
+    /* Absolute positioning to place it at the top of the document flow */
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    /* Full viewport size */
+    width: 100vw;
+    height: 100vh;
+    
+    /* Ensure it is on top of other elements if they overlap, 
+       but behind content that comes after it in flow if we want scroll over?
+       Actually, since we want to scroll *past* it, it sits at the top.
+    */
+    z-index: 10;
+    
+    /* Background Image */
+    background-image: url('../images/background.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Parallax-like fixed background */
+    
+    /* Flexbox for centering text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Spacer to push the main content below the fold */
+.content-spacer {
+    height: 100vh;
+    width: 100%;
+    display: block;
+}
+
+/* Handwritten Text Styling */
+.landing-text {
+    font-family: 'Black Ops One', system-ui;
+    font-size: 8rem;
+    color: #ffffff;
+    text-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    
+    /* Animation: Fade In */
+    opacity: 0;
+    animation: fadeInText 3s ease-in-out forwards;
+    
+    /* Prevent text selection */
+    user-select: none;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Fade In Keyframes */
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .landing-text {
+        font-size: 4rem;
+    }
+}
+
+/* Navigation Grid for Homepage */
+.nav-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    padding-bottom: 4rem;
+}
+
+.nav-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+[data-md-color-scheme="default"] .nav-card {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.nav-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+[data-md-color-scheme="default"] .nav-card:hover {
+     background: rgba(0, 0, 0, 0.05);
+}
+
+.nav-card h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid rgba(127, 127, 127, 0.2);
+    padding-bottom: 0.5rem;
+}
+
+.nav-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-card li {
+    margin-bottom: 0.5rem;
+}
+
+.nav-card a {
+    text-decoration: none;
+    color: inherit;
+    opacity: 0.8;
+    transition: all 0.2s;
+    display: block;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.nav-card a:hover {
+    opacity: 1;
+    background: rgba(127, 127, 127, 0.1);
+    transform: translateX(4px);
+}
