@@ -1,0 +1,1355 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The PastWithin 的站点">
+      
+      
+        <meta name="author" content="The PastWithin">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.ico">
+      <meta name="generator" content="zensical-0.0.15">
+    
+    
+      
+        <title>VPN 和 Github Copilot - The PastWithin</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../../../assets/stylesheets/modern/main.f1b6466b.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+  
+  <style>:root{}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i%7CJetBrains-Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrains-Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/css/extra.css">
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,a=__md_scope)=>JSON.parse(t.getItem(a.pathname+"."+e)),__md_set=(e,t,a=localStorage,_=__md_scope)=>{try{a.setItem(_.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vpn" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="The PastWithin" class="md-header__button md-logo" aria-label="The PastWithin" data-md-component="logo">
+      
+  <img src="../../../assets/images/github.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            The PastWithin
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              VPN 和 Github Copilot
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="blue"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="black"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="查找">
+  <button type="button" class="md-search__button">
+    查找
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+        <a href="https://github.com/Pastwithin/Pastwithin-Zensical" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Pastwithin-Zensical
+  </div>
+</a>
+      
+    </div>
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../.." class="md-tabs__link">
+          
+  
+  首页
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../VPN&&Github%20Copilot/" class="md-tabs__link">
+          
+  
+  工具
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../notes/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" class="md-tabs__link">
+          
+  
+  学习笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../passages/%E4%B8%80%E7%82%B9%E7%82%B9%E5%9B%9E%E5%BF%86%EF%BC%88%E8%BF%98%E5%9C%A8%E5%86%99%EF%BC%89/" class="md-tabs__link">
+          
+  
+  文章
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../changelog/changelog/" class="md-tabs__link">
+          
+  
+  更新日志
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="The PastWithin" class="md-nav__button md-logo" aria-label="The PastWithin" data-md-component="logo">
+      
+  <img src="../../../assets/images/github.png" alt="logo">
+
+    </a>
+    The PastWithin
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Pastwithin/Pastwithin-Zensical" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Pastwithin-Zensical
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    首页
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    主页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../homepage/%E7%BD%91%E7%AB%99%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网站介绍
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VPN&&Github%20Copilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VPN和Github Copilot
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--new"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Markdown
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Markdown
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/Markdown%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Markdown基础语法
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--new"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Markdown%E8%A1%A8%E6%A0%BC%E8%AF%AD%E6%B3%95/Markdown%E8%A1%A8%E6%A0%BC%E8%AF%AD%E6%B3%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Markdown表格语法
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--new"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    学习笔记
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    学习笔记
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../notes/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常微分方程
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--new"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    文章
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    文章
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../passages/%E4%B8%80%E7%82%B9%E7%82%B9%E5%9B%9E%E5%BF%86%EF%BC%88%E8%BF%98%E5%9C%A8%E5%86%99%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    一点点回忆（还在写）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../passages/%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+     总结 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    更新日志
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    更新日志
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../changelog/changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    更新日志
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相关概念
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        具体操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="具体操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1clash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.Clash 软件下载
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.获取订阅
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.开启代理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        需要注意的点
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+  
+
+
+<h1 id="vpn">VPN 翻墙教程</h1>
+<p>我说翻墙其实是违法的(<br>但是其实很没办法的一件事情是，对于有的专业来说你其实免不了翻墙的操作，毕竟国内网络裸连 Github 的稳定性非常差，再有就是，像是 Z-lib 这样的资源站，往往也需要你科学上网才能够连得上上（但是还是要提醒，不要到外网上边碰一些不该碰的东西）。</p>
+<hr />
+<h2 id="_1">相关概念</h2>
+<ul>
+<li>
+<p>VPN：</p>
+<p>VPN 的原理是将你设备上的网络流量 <strong>通过一个位于其他地区的中间服务器转发</strong>，并会在传输过程中加密。因此在你使用了 VPN 之后，网络服务器识别你的 IP 地址时就会是你的 <strong>中间服务器的 IP</strong>，也因为这样，能够实现访问外网的效果。</p>
+</li>
+<li>
+<p>订阅：</p>
+<p>这其实就是前边说到的 <strong>“中间服务器”</strong>，打个比方说就是，你翻墙之后，还 <strong>得有个人在墙对面接你</strong>。一般的服务订阅都是需要付费的，当然你可以找到一些免费的订阅，但是 <strong>我个人</strong> 不是很推荐，因为这些免费的节点往往不是很稳定，并且这些节点可能带有恶意劫持。</p>
+</li>
+<li>
+<p>Clash:</p>
+<p>这是一个代理客户端程序，主要是能够实现解析你的订阅配置，并且能够根据规则来决定什么时候应该走直连还是走代理（比方说国内的网站就走直连，国外的网站就走代理）。</p>
+</li>
+</ul>
+<hr />
+<h2 id="_2">具体操作</h2>
+<h3 id="1clash">1.Clash 软件下载</h3>
+<div class="language-text highlight"><pre><span></span><code>这里以我自己使用的软件（Clash Verge）为例：
+首先先在下边贴一下下载地址
+
+&lt;a href=&quot;https://clash-verge.org/zh-CN&quot; style=&quot;text-decoration:none; color:#0366d6;&quot;&gt; Clash Verge &lt;/a&gt;
+</code></pre></div>
+<blockquote>
+<p>下载的时候浏览器可能会识别 Clash Verge 为有风险的文件，右键选择保留即可（无视风险继续安装）</p>
+</blockquote>
+<div class="language-text highlight"><pre><span></span><code>当你下载完成之后，打开 Clash Verge，点开侧边栏中的 `订阅`，这个时候里边还是空的，你还需要到其它地方获取一个可用的订阅。
+</code></pre></div>
+<h3 id="2">2.获取订阅</h3>
+<div class="language-text highlight"><pre><span></span><code>我自己使用的订阅是叫做 &lt;a href=&quot;https://interface.pqjc.site/#/dashboard&quot; style=&quot;text-decoration:none; color:#0366d6;&quot;&gt; 赔钱机场 &lt;/a&gt;，节点不算特别快，但是日常使用算是比较够了。
+当然你也可以选择其它的订阅节点，但在购买订阅的时候一般不要买特别久，主要是怕跑路。
+在你购买订阅之后，订阅方会给你一个订阅链接，直接复制到 Clash Verge 订阅栏中的订阅文件链接处导入即可。
+</code></pre></div>
+<h3 id="3">3.开启代理</h3>
+<div class="language-text highlight"><pre><span></span><code>启用节点，并在 Clash Verge 中开启系统代理即可。
+</code></pre></div>
+<hr />
+<h2 id="_3">需要注意的点</h2>
+<ul>
+<li>有的时候学校可能会 <strong><font color ="red"> BAN </font></strong> 掉代理端口，比如去年考研的时候连在学校校网上，节点基本上都显示 <font color="red" > <code>Time out</code> </font>, 这种时候可以先考虑一下更换网络，也可以连在手机热点上试一下。</li>
+<li><strong>在关机之前记得关掉你的代理软件</strong>，不关掉的话有的时候可能会有一些奇怪的问题。下面我给出一些我自己见到过的问题和当时的解决方案：</li>
+<li>有 <code>Wlan</code> 连接但是不能够上网：一般体现为浏览器界面提示 <code>“你的代理服务器可能有问题”</code>。<ul>
+<li>解决方案：在你的代理软件里关掉代理后重试，如果仍然不行，可以再试一试在 Windows 的“<strong>网络和 Internet 设置</strong>“中的“<strong>代理</strong> ”中关闭 <code>使用代理服务器</code> 和 <code>使用代理脚本</code>。</li>
+</ul>
+</li>
+<li>直接打不开浏览器    <span style="text-decoration:line-through;">(讲道理其实我也不清楚这是Edge的问题还是代理的问题)</span><ul>
+<li>解决方案：在任务管理器中关闭掉浏览器相关进程。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h1 id="github-copilot">Github Copilot 学生认证教程</h1>
+<p>GitHub Copilot 是一个由 GitHub 与大语言模型驱动的 <strong>AI 编程助手</strong>。</p>
+<blockquote>
+<p>注意：Github Copilot 和微软 Windows 的 Colilot 不是一个东西</p>
+</blockquote>
+<p>它主要是针对编程的一个 AI 助手，虽然你也可以采取一些其它方法来让它为你写论文之类的，但是在其它方面并没有那么好用，比如我现在在使用网页版时，上传文件总是会遇到卡顿的 BUG。</p>
+<p>一般 Github Copilot 是搭配着 IDE 使用的，支持 Github Copilot 的 IDE 有：</p>
+<div class="tag-cloud" aria-label="支持的 IDE">
+  <a class="tagcloud-item" target="_blank" rel="noopener"> <font color ="3399FF"> Visual Studio Code </font> </a>
+  <a class="tagcloud-item" target="_blank" rel="noopener"> <font color ="purple"> Visual Studio </font> </a>
+  <a class="tagcloud-item" target="_blank" rel="noopener"> <font color ="3366FF"> Xcode </font> </a>
+  <a class="tagcloud-item" target="_blank" rel="noopener"> <font color ="FF3366"> JetBrains </font> </a>
+  <a class="tagcloud-item" target="_blank" rel="noopener"> <font color ="993399"> Eclipseide </font> </a>
+  <a class="tagcloud-item" target="_blank" rel="noopener"> <font color ="66FF99"> Neovim </font> </a>
+</div>
+
+<p>你应该可以在这些 IDE 的插件中找到 Github Copilot。</p>
+<p>对于学生，Github Copilot 提供了一年的免费使用。这个学生认证貌似是 AI 认证的，我在这里只是介绍我当时认证通过的方法，如果有人认证的时候遇到了始终无法通过的情况的话，可以再参考网上其它的一些方法。</p>
+<hr />
+<h2 id="_4">提前准备</h2>
+<ul>
+<li>
+<p>首先你需要有自己的一个 Github 账号。</p>
+</li>
+<li>
+<p>除此之外还需要用到学校的邮箱、以及一份能够证明你在学校就读的东西（我自己用的是学生证）。</p>
+</li>
+<li>
+<p>建议在在校期间进行认证。</p>
+</li>
+</ul>
+<hr />
+<h2 id="_5">具体操作</h2>
+<h3 id="_6">补充个人信息</h3>
+<ul>
+<li>
+<p>登录你的 Github</p>
+</li>
+<li>
+<p>点击你的头像后，点击 <code>settings</code>, 在 <code>Acess</code> 栏目下找到 <code>Biling and licening</code> 中的 <strong>Payment information</strong>, 补充相关信息：</p>
+</li>
+<li>
+<p>将名字如实填写，地址填写为学校的名字，城市填写为学校所在的城市，国家填写为中国</p>
+</li>
+<li>
+<p>点击 <code>Email</code>, <strong>添加绑定你学校的邮箱</strong></p>
+</li>
+<li>
+<blockquote>
+<p>在其它的一些教程中会要求你完善你的 <code>Pubilc Profile</code>，不过我自己是当时觉得麻烦，没有做这一步，最后也通过了</p>
+</blockquote>
+</li>
+<li>
+<p>点击 <code>Password and authentication</code> 完成 2FA 认证：</p>
+</li>
+<li>
+<p>点开之后是一个二维码，使用 2FA 身份验证器（可以使用微信小程序中的 <code>腾讯身份验证器</code>）扫码，绑定之后会出现一个六位的数字密码，填写即可。然后一定是要记住下载之后的恢复密钥。</p>
+<blockquote>
+<p>2FA 身份验证开启之后，登录 Github 时，在输入账号密码之后，还会要求你再输入一个 2FA 验证码，这个密钥在前边使用的 2FA 身份验证器中能够查看。如果遇到找不到这个密钥的情况，就需要用到恢复密钥了</p>
+</blockquote>
+</li>
+<li>
+<p>点开 <a href="https://github.com/education" style="text-decoration:none; color:#0366d6;"> Github Education </a>，在首页处点击 <code>Join Github Education</code> 开始认证, 这个步骤是不建议打开 VPN 的，过程中需要使用摄像头上传一份证明文件。</p>
+</li>
+</ul>
+<blockquote>
+<p>就像前文中说的，在使用 VPN 之后，Github 识别到的 IP 地址将会是你的中间服务器的 IP 地址，于是它会要求你解释你为什么不在学校，可能会影响到最后的成功率。（所以前边也建议最好是在学校期间进行认证）</p>
+</blockquote>
+<ul>
+<li>
+<p>在上传之后不久就可以查看结果，如果审核不通过可以多尝试几次。在通过之后你的 Github Copilot 将会在三天之后可用，注意，这并不是自动启用的，而是需要你自己在 Github 上边进行确认的。</p>
+</li>
+<li>
+<p>在确认之后你就可以在 <a href="https://github.com/copilot" style="text-decoration:none; color:#0366d6;"> Github Copilot </a> 和你的 IDE 中使用 Github Copilot 了。</p>
+</li>
+</ul>
+<blockquote>
+<p>对于在 IDE 中的配置，在 IDE 中下载 Github Copilot，然后登录你的 Github 账号即可</p>
+</blockquote>
+<hr />
+<h2 id="_7">补充</h2>
+<ul>
+<li>假如在不使用 VPN 的情况下无法连接到 Github 导致最后一步无法完成，可以尝试使用 <a href="https://www.dogfight360.com/blog/18627/" style="text-decoration:none; color:#0366d6;"> UsbEAm Hosts Editor </a> 修改 Github 的 host 配置。</li>
+</ul>
+
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">VPN</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Github Copilot</span>
+      
+    
+  </nav>
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-circle-arrow-up" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4M12 16V8"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2025 The PastWithin
+    </div>
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../..","features":["navigation.tabs","navigation.tabs.sticky","navigation.top","navigation.sections","search.highlight","search.suggest","content.code.copy","content.tabs","content.code.select","content.tooltips"],"search":"../../../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"已复制","clipboard.copy":"复制","search.result.more.one":"在该页上还有 1 个符合条件的结果","search.result.more.other":"在该页上还有 # 个符合条件的结果","search.result.none":"没有找到符合条件的结果","search.result.one":"找到 1 个符合条件的结果","search.result.other":"# 个符合条件的结果","search.result.placeholder":"键入以开始搜索","search.result.term.missing":"缺少","select.version":"选择当前版本"},"version":null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.00c35305.min.js"></script>
+      
+        <script src="../../../javascripts/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>
