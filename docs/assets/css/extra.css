@@ -47,7 +47,7 @@ body:has(.landing-screen) .md-content {
     z-index: 10;
     
     /* Background Image */
-    background-image: url('../images/background.jpeg');
+    background-image: url('../images/background.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

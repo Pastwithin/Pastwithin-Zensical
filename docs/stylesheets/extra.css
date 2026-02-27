@@ -233,3 +233,184 @@
      若需完全兼容，请在样式中保留一个不使用 backdrop-filter 的回退（本文件已提供回退背景色）。
    - 若使用 MkDocs 的缓存/压缩插件，请清缓存后重新加载。
 */
+
+/* --------------------------------------------------------- */
+/* Header: center search box in navigation bar               */
+/* --------------------------------------------------------- */
+/* 使用绝对定位将搜索对话框居中，避免修改现有 flex 布局 */
+.md-header__inner { position: relative; }
+.md-search {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  /* 保持在合理宽度，移动端自动适配 */
+  max-width: 640px;
+  width: min(60%, 640px);
+}
+.md-search .md-search__button { width: 100%; display: block; }
+/* 保持内部按钮与输入透明以只显示边框与毛玻璃 */
+.md-search .md-search__button,
+.md-search input,
+.md-search input::placeholder {
+  background: transparent !important;
+  color: inherit !important;
+}
+.md-search .md-search__button { border: none; padding: 0; padding-left: 1.9rem; padding-right: 2.2rem; text-align: left; }
+
+/* 统一：为搜索框添加毛玻璃与圆角（在亮/暗色主题下有配色差异） */
+.md-search {
+  border-radius: 12px;
+  padding: 6px;
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid transparent;
+}
+
+[data-md-color-scheme="default"] .md-search {
+  background-color: transparent;
+  border-color: rgba(0,0,0,0.06);
+}
+[data-md-color-scheme="slate"] .md-search {
+  background-color: transparent;
+  border-color: rgba(255,255,255,0.06);
+}
+
+/* --------------------------------------------------------- */
+/* Tabs: center main navigation tabs under header            */
+/* --------------------------------------------------------- */
+/* 在宽屏上水平居中标签；在窄屏上保留横向滚动以保持可访问性 */
+.md-tabs {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: -20px;
+}
+.md-tabs__list {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+}
+.md-tabs__item { list-style: none; }
+
+@media (max-width: 768px) {
+  .md-tabs__list {
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 0.75rem;
+    padding-left: 0.6rem;
+  }
+  .md-search { width: 80%; }
+}
+
+/* --------------------------------------------------------- */
+/* Tabs frosted glass & make header transparent              */
+/* --------------------------------------------------------- */
+/* 全局：使顶部导航透明（覆盖主题默认背景），并给每个 tab 添加圆角毛玻璃样式 */
+.md-header {
+  background-color: transparent !important;
+  border-bottom: none !important;
+}
+
+/* 基础样式：圆角、半透明背景与毛玻璃 */
+.md-tabs__link {
+  display: inline-block;
+  padding: 0.45rem 0.9rem;
+  border-radius: 20px;
+  color: inherit;
+  text-decoration: none;
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  transition: background-color 160ms ease, transform 120ms ease, box-shadow 160ms ease;
+  border: 0.6px solid rgba(0,0,0,0.05);
+}
+
+/* Light scheme: 使用浅色半透明背景 + 细边框 */
+[data-md-color-scheme="default"] .md-tabs__link {
+  background-color: transparent;
+  color: var(--md-default-fg-color);
+  border-color: rgba(0,0,0,0.08);
+}
+[data-md-color-scheme="default"] .md-tabs__item--active .md-tabs__link,
+[data-md-color-scheme="default"] .md-tabs__link--active {
+  background-color: transparent;
+  box-shadow: 0 10px 28px rgba(16,24,40,0.12);
+}
+
+/* Dark scheme: 使用深色半透明毛玻璃效果 */
+[data-md-color-scheme="slate"] .md-tabs__link {
+  background-color: transparent;
+  color: rgba(255,255,255,0.92);
+  border-color: rgba(255,255,255,0.12);
+}
+[data-md-color-scheme="slate"] .md-tabs__item--active .md-tabs__link,
+[data-md-color-scheme="slate"] .md-tabs__link--active {
+  background-color: transparent;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.8);
+}
+
+/* Hover / focus 效果 */
+.md-tabs__link:hover, .md-tabs__link:focus {
+  transform: translateY(-2px);
+  opacity: 0.98;
+}
+
+/* 移动端：减小圆角与内边距，保留滚动 */
+@media (max-width: 768px) {
+  .md-tabs__link { border-radius: 3px; padding: 0.36rem 0.7rem; }
+}
+
+/* --------------------------------------------------------- */
+/* Remove default underline / bottom rule under active tab   */
+/* --------------------------------------------------------- */
+/* 覆盖主题可能在 .md-tabs 或 .md-tabs__list 上设置的边框或伪元素 */
+.md-tabs,
+.md-tabs__list,
+.md-tabs__item {
+  border-bottom: none !important;
+}
+.md-tabs::after,
+.md-tabs__list::after,
+.md-tabs__link::after,
+.md-tabs__link--active::after,
+.md-tabs__item--active::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* 如果主题使用 box-shadow 或 outline 作分隔，确保不显示明显白线 */
+.md-tabs, .md-header {
+  box-shadow: none !important;
+}
+
+/* --------------------------------------------------------- */
+/* Palette toggle button frosted glass                       */
+/* --------------------------------------------------------- */
+.md-header__option .md-header__button {
+  border-radius: 7px;
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  transition: background-color 160ms ease, transform 120ms ease, box-shadow 160ms ease;
+  border: 0.6px solid rgba(0,0,0,0.05);
+  background-color: transparent;
+}
+
+[data-md-color-scheme="default"] .md-header__option .md-header__button {
+  border-color: rgba(0,0,0,0.08);
+}
+
+[data-md-color-scheme="slate"] .md-header__option .md-header__button {
+  border-color: rgba(255,255,255,0.12);
+}
+
+.md-header__option .md-header__button:hover,
+.md-header__option .md-header__button:focus {
+  transform: translateY(-2px);
+  opacity: 0.98;
+}
+
