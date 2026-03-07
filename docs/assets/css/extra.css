@@ -44,7 +44,7 @@ body:has(.landing-screen) .md-content {
        but behind content that comes after it in flow if we want scroll over?
        Actually, since we want to scroll *past* it, it sits at the top.
     */
-    z-index: 10;
+    z-index: 1;
     
     /* Background Image */
     background-image: url('../images/background.jpg');
