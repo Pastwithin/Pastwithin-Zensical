@@ -12,7 +12,7 @@ status: new
 (function(){
 	const iframe = document.querySelector('iframe');
 	if(!iframe) return;
-	const darkSrc = '../VPN&&Github Copilot.html';
+	const darkSrc = '../VPN&&Github Copilot_dark.html';
 	const lightSrc = '../VPN&&Github Copilot_light.html';
 
 	function getTheme(){
@@ -27,19 +27,19 @@ status: new
 		if (document.documentElement.classList.contains('light')) return 'light';
 		return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 	}
-
+	
 	function applyThemeSrc(){
 		const theme = getTheme();
 		const target = theme === 'light' ? lightSrc : darkSrc;
 		if (iframe.getAttribute('src') !== target) iframe.setAttribute('src', target);
 	}
-
+	
 	applyThemeSrc();
-
+	
 	if (window.matchMedia) {
 		try{ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyThemeSrc); }catch(e){}
 	}
-
+	
 	const obs = new MutationObserver(applyThemeSrc);
 	// observe both html and body attributes because theme toggler updates body
 	obs.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'data-md-color-scheme'] });

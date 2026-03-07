@@ -4,7 +4,8 @@ date: 2026-01-16
 tags:
   - Markdown
 status: new
-
+search: 
+    excluded: true
 ---
 # Markdown 基础语法
 

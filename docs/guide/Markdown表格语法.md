@@ -5,6 +5,8 @@ tags:
   - Markdown
   - Mermaid
 status: new
+search:
+    excluded: true
 ---
 
 # Markdown表格语法(Mermaid)

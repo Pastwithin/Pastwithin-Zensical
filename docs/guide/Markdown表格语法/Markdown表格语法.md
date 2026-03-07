@@ -11,7 +11,7 @@ status: new
 (function(){
 	const iframe = document.querySelector('iframe');
 	if(!iframe) return;
-	const darkSrc = '../Markdown表格语法.html';
+	const darkSrc = '../Markdown表格语法_dark.html';
 	const lightSrc = '../Markdown表格语法_light.html';
 
 	function getTheme(){
