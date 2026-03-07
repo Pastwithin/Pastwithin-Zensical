@@ -1,21 +1,3 @@
-/* 
- * Drake Zensical Theme (Dual Mode) - Updated
- * Goal: 保留暗色模式下代码块的透明毛玻璃效果（frosted glass）
- *
- * 注意：把此文件替换到你的项目 `docs/assets/css/drake-zensical.css`
- * 然后重启 `mkdocs serve` 或重新构建站点以查看效果。
- */
-
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
-/* ==========================================================================
-   通用变量与字体
-   ========================================================================== */
-:root {
-  --md-code-font: "JetBrains Mono", monospace;
-  --md-text-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-}
-
 /* ==========================================================================
    【亮色模式】 Light Mode (scheme: default)
    ========================================================================== */
@@ -233,7 +215,21 @@
      若需完全兼容，请在样式中保留一个不使用 backdrop-filter 的回退（本文件已提供回退背景色）。
    - 若使用 MkDocs 的缓存/压缩插件，请清缓存后重新加载。
 */
+code, pre, .md-code, .md-inline {
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
+  font-weight: 700; /* 改为 700 则显示粗体；可用值：100,200,...900，实际以可用字重为准 */
+  /* 常用的标准属性（最易读） */
+  font-variant-ligatures: contextual common-ligatures discretionary-ligatures;
 
+  /* 各浏览器前缀 / 低级选项，启用常见 OpenType features */
+  -webkit-font-feature-settings: "calt" 1, "liga" 1, "dlig" 1;
+  -moz-font-feature-settings: "calt" 1, "liga" 1, "dlig" 1;
+  font-feature-settings: "calt" 1, "liga" 1, "dlig" 1;
+
+  /* 确保没有额外字距或 display 破坏连字 */
+  letter-spacing: normal;
+  display: inline; /* 如果主题把它改成 inline-block，尽量改回 inline */
+}
 /* --------------------------------------------------------- */
 /* Header: center search box in navigation bar               */
 /* --------------------------------------------------------- */
@@ -247,8 +243,8 @@
   transform: translate(-50%, -50%);
   z-index: 20;
   /* 保持在合理宽度，移动端自动适配 */
-  max-width: 640px;
-  width: min(60%, 640px);
+  max-width: 450px;
+  width: min(60%, 450px);
 }
 .md-search .md-search__button { width: 100%; display: block; }
 /* 保持内部按钮与输入透明以只显示边框与毛玻璃 */
@@ -278,15 +274,50 @@
   border-color: rgba(255,255,255,0.06);
 }
 
+/* Search hover / focus effects */
+.md-search {
+  transition: transform 160ms cubic-bezier(.2,.9,.2,1), background-color 160ms ease, box-shadow 200ms ease, border-color 160ms ease;
+  transform-origin: center center;
+}
+
+.md-search:hover,
+.md-search:focus-within {
+  transform: translate(-50%, -50%) scale(1.035);
+}
+
+[data-md-color-scheme="default"] .md-search:hover,
+[data-md-color-scheme="default"] .md-search:focus-within {
+  background-color: rgba(0,0,0,0.03);
+  border-color: rgba(var(--drake-accent-rgb), 0.06);
+  box-shadow: 0 8px 28px rgba(16,24,40,0.06);
+}
+
+[data-md-color-scheme="slate"] .md-search:hover,
+[data-md-color-scheme="slate"] .md-search:focus-within {
+  background-color: rgba(255,255,255,0.02);
+  border-color: rgba(var(--drake-accent-rgb), 0.12);
+  box-shadow: 0 10px 36px rgba(var(--drake-accent-rgb), 0.06);
+}
+
+/* Make inner input and button respond visually on hover/focus */
+.md-search input:focus {
+  outline: none;
+}
+.md-search .md-search__button:hover,
+.md-search .md-search__button:focus {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+
 /* --------------------------------------------------------- */
 /* Tabs: center main navigation tabs under header            */
 /* --------------------------------------------------------- */
-/* 在宽屏上水平居中标签；在窄屏上保留横向滚动以保持可访问性 */
 .md-tabs {
   display: flex;
   justify-content: center;
   position: relative;
-  top: -20px;
+  top: 0px;
 }
 .md-tabs__list {
   display: flex;
@@ -297,13 +328,29 @@
 }
 .md-tabs__item { list-style: none; }
 
+/* Prevent vertical scrolling inside the nav area: ensure tabs don't create internal scrollbars */
+.md-tabs,
+.md-tabs__list,
+.md-tabs__item,
+.md-header {
+  overflow-y: visible !important;
+  overflow-x: visible !important;
+  max-height: none !important;
+}
+
+.md-tabs__list {
+  align-items: center; /* vertically center items to avoid unexpected wrapping/scroll */
+}
+
 @media (max-width: 768px) {
   .md-tabs__list {
-    justify-content: flex-start;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 0.75rem;
-    padding-left: 0.6rem;
+    /* Remove horizontal scrolling on mobile; allow wrapping and center */
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-x: visible; /* prevent scrollbar */
+    -webkit-overflow-scrolling: unset;
+    gap: 0.6rem;
+    padding-left: 0;
   }
   .md-search { width: 80%; }
 }
@@ -320,14 +367,18 @@
 /* 基础样式：圆角、半透明背景与毛玻璃 */
 .md-tabs__link {
   display: inline-block;
-  padding: 0.45rem 0.9rem;
-  border-radius: 20px;
+  padding: 0.3rem 0.6rem;
+  border-radius: 10px;
   color: inherit;
   text-decoration: none;
   -webkit-backdrop-filter: blur(16px) saturate(160%);
   backdrop-filter: blur(16px) saturate(160%);
   transition: background-color 160ms ease, transform 120ms ease, box-shadow 160ms ease;
   border: 0.6px solid rgba(0,0,0,0.05);
+  box-sizing: border-box;
+  background-clip: padding-box;
+  /* inset bottom line to ensure the rounded shape appears closed on all backgrounds */
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.04) ;
 }
 
 /* Light scheme: 使用浅色半透明背景 + 细边框 */
@@ -335,11 +386,13 @@
   background-color: transparent;
   color: var(--md-default-fg-color);
   border-color: rgba(0,0,0,0.08);
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.06);
 }
 [data-md-color-scheme="default"] .md-tabs__item--active .md-tabs__link,
 [data-md-color-scheme="default"] .md-tabs__link--active {
   background-color: transparent;
-  box-shadow: 0 10px 28px rgba(16,24,40,0.12);
+  /* preserve inset bottom line while adding active elevation shadow */
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.06), 0 10px 28px rgba(16,24,40,0.12);
 }
 
 /* Dark scheme: 使用深色半透明毛玻璃效果 */
@@ -347,11 +400,13 @@
   background-color: transparent;
   color: rgba(255,255,255,0.92);
   border-color: rgba(255,255,255,0.12);
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,0.04);
 }
 [data-md-color-scheme="slate"] .md-tabs__item--active .md-tabs__link,
 [data-md-color-scheme="slate"] .md-tabs__link--active {
   background-color: transparent;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.8);
+  /* preserve inset bottom line while adding active elevation shadow */
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,0.04), 0 12px 32px rgba(0,0,0,0.8);
 }
 
 /* Hover / focus 效果 */
