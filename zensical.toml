@@ -31,7 +31,7 @@ features = [    #功能拓展
     "navigation.tabs",        # 启用标签导航
     "navigation.tabs.sticky", # 导航栏吸顶
     "navigation.top",         # 顶部导航
-    "navigation.sections",    # 分节导航
+    "navigation.footer",    # 分节导航
     "search.highlight",       # 搜索高亮
     "search.suggest",        # 搜索建议
     "content.code.copy",    # 代码复制按钮
