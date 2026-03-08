@@ -4,8 +4,9 @@ date: 2026-01-15
 tags:
   - VPN
   - Github Copilot
+status: new
 search:
-    excluded: true
+    exclude: true
 ---
 
 # VPN 翻墙教程

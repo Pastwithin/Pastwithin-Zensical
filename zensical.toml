@@ -95,7 +95,6 @@ custom_fences = [
 
 [[project.nav]]
 "工具" = [
-    { "VPN和Github Copilot" = "guide/VPN&&Github Copilot/VPN&&Github Copilot.md" },
     { "Markdown" = [
         {"Markdown基础语法" = "guide/Markdown基础语法/Markdown基础语法.md"},
         {"Markdown表格语法" = "guide/Markdown表格语法/Markdown表格语法.md"},
@@ -109,7 +108,10 @@ custom_fences = [
 [[project.nav]]
 "文章" = [
     { "一点点回忆（还在写）" = "passages/一点点回忆（还在写）.md" },
-    { " 总结 "= "passages/总结.md" }
+    { " 2025 "= [
+        {"总结" = "passages/2025/总结.md"},
+        {"书籍、电影和游戏" = "passages/2025/书籍、电影和游戏.md"},
+    ] }
 ]
 
 [[project.nav]]

@@ -5,7 +5,7 @@ tags:
   - Markdown
 status: new
 search: 
-    excluded: true
+    exclude: true
 ---
 # Markdown 基础语法
 

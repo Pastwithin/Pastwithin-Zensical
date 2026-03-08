@@ -6,7 +6,7 @@ tags:
   - Mermaid
 status: new
 search:
-    excluded: true
+    exclude: true
 ---
 
 # Markdown表格语法(Mermaid)
