@@ -105,6 +105,7 @@ custom_fences = [
     { "常微分方程" = "notes/常微分方程/常微分方程.md" },
     { "信息与电子工程导论" = [
         {"Lab1" = "notes/信息与电子工程导论/Lab1/Lab1.md"},
+        {"Lab2" = "notes/信息与电子工程导论/Lab2/Lab2.md"},
     ] },
     
 ]

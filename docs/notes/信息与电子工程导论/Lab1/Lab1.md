@@ -38,7 +38,7 @@ $$ X(k)=\sum_{n=0}^{N-1}x(n)e^{-j\frac{2\pi}{N}kn} \quad (k=0,1,\dots,N-1)$$
 
 对应的逆离散傅里叶变换（）可将域信号还原为时域信号，定义为：
 
- $$x(n)=\frac{1}{N}\sum_{k=0}^{N-1}X(k)e^{j\frac{2\pi}{N}kn} \quad (n=0,1,\dots,N-1)$$
+   $x(n)=\frac{1}{N}\sum_{k=0}^{N-1}X(k)e^{j\frac{2\pi}{N}kn} \quad (n=0,1,\dots,N-1)$
 
    $x(n)$：离散时域信号， 
 
