@@ -123,6 +123,11 @@ custom_fences = [
 ]
 
 [[project.nav]]
+"友链" = [
+    { "友链" = "interlink/Interlink.md" }
+]
+
+[[project.nav]]
 "更新日志" = [
     { "更新日志" = "changelog/changelog.md" }
 ]

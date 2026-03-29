@@ -11,8 +11,8 @@ status: new
 (function(){
 	const iframe = document.querySelector('iframe');
 	if(!iframe) return;
-	const darkSrc = '../Lab2.html';
-	const lightSrc = '../Lab2.html';
+	const darkSrc = '../Lab2_dark.html';
+	const lightSrc = '../Lab2_light.html';
 
 
 	function getTheme(){
