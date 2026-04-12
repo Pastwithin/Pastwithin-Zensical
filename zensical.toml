@@ -107,6 +107,12 @@ custom_fences = [
         {"Lab1" = "notes/信息与电子工程导论/Lab1/Lab1.md"},
         {"Lab2" = "notes/信息与电子工程导论/Lab2/Lab2.md"},
     ] },
+        { "数字系统" = [
+        { "LAB1" = "notes/数字系统/Lab/Lab1/Lab1.md" },
+        { "LAB2" = "notes/数字系统/Lab/Lab2/Lab2.md" },
+        { "Homework2" = "notes/数字系统/Homework/Homework2/Homework2.md" },
+        { "Homework3" = "notes/数字系统/Homework/Homework3/Homework3.md" },
+    ] },
     
 ]
 
