@@ -110,6 +110,7 @@ custom_fences = [
         { "数字系统" = [
         { "LAB1" = "notes/数字系统/Lab/Lab1/Lab1.md" },
         { "LAB2" = "notes/数字系统/Lab/Lab2/Lab2.md" },
+        { "LAB3" = "notes/数字系统/Lab/Lab3/Lab3.md" },
         { "Homework2" = "notes/数字系统/Homework/Homework2/Homework2.md" },
         { "Homework3" = "notes/数字系统/Homework/Homework3/Homework3.md" },
     ] },
@@ -124,7 +125,7 @@ custom_fences = [
         {"书籍、电影和游戏" = "passages/2025/书籍、电影和游戏.md"},
     ] },
     { " 随笔 " = [
-        {" 一 " = "passages/随笔/一.md"},
+        {" 四月是最残忍的月份 " = "passages/随笔/四月是最残忍的月份.md"},
     ] }
 ]
 
