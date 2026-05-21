@@ -99,6 +99,9 @@ custom_fences = [
         {"Markdown基础语法" = "guide/Markdown基础语法/Markdown基础语法.md"},
         {"Markdown表格语法" = "guide/Markdown表格语法/Markdown表格语法.md"},
     ] },
+    { "Digital IDE" = [
+        {"在 WSL 下为 Digital IDE 配置 iverilog" = "guide/Digital IDE iverilog配置/Digital IDE iverilog配置.md"},
+    ] },
 ]
 [[project.nav]]
 "学习笔记" = [
